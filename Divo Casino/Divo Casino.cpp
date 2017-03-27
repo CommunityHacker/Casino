@@ -23,7 +23,7 @@ void Provjera(int ulog, int &chipovi, bool dobitak1red, bool dobitak2red, bool d
 int chip = 5;
 vector<string>imena;
 int korisnici = 0;
-
+int novciPocetak;
 int chipovi = 0;
 //int novci = 0;
 int main()
@@ -355,6 +355,7 @@ void LogIn(string &ime, int &chipovi, int &novci){
 
 			cout << "Koliko novaca imate?" << endl;
 			cin >> novci;
+			novciPocetak = novci;
 			
 		
 
@@ -366,9 +367,12 @@ void LogIn(string &ime, int &chipovi, int &novci){
 void LogOut(string &ime, int &chipovi, int &novci) {
 	ofstream listaImena;
 	listaImena.open("Text.txt", ios::app);
-	listaImena << ime + " " << novci << + "\n";
+	listaImena << ime + " " << (novci-novciPocetak) << + "\n";
 	listaImena.close();
 	ime = "";
+	novci = 0;
+	chipovi = 0;
+	novciPocetak = 0;
 	system("CLS");
 	LogIn(ime,chipovi, novci);
 
@@ -407,16 +411,18 @@ void RandomVoce(int &novci,int &chipovi) {
 	srand(time(NULL));
 	cout << "Upisite ulog" << endl;
 	cin >> ulog;
-	if (ulog > chipovi) {
-		cout << "Nemate dovoljno chipova" << endl;
-		system("CLS");
-		Menu(chipovi, novci);
-	}
+	
+	
 
 	do {
 		cout << "5 da zavrti" << endl;
 		cin >> start;
 		play = true;
+		if (ulog > chipovi) {
+			cout << "Nemate dovoljno chipova" << endl;
+			system("CLS");
+			Menu(chipovi, novci);
+		}
 
 
 		system("CLS");
@@ -594,4 +600,8 @@ void Provjera(int ulog ,int &chipovi,bool dobitak1red, bool dobitak2red, bool do
 	else {
 		dobitak2diagonala = false;
 	}
+}
+void HighScore(string ime,int novci, int chipovi) {
+
+	
 }

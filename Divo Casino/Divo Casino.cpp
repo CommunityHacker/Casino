@@ -20,6 +20,7 @@ void LogIn(string &ime, int &chipovi, int &novci);
 void LogOut(string &ime, int &chipovi, int &novci);
 void RandomVoce(int &novci, int &chipovi);
 void Provjera(int ulog, int &chipovi, bool dobitak1red, bool dobitak2red, bool dobitak3red, bool dobitak1diagonala, bool dobitak2diagonala, int prvi[], int drugi[], int treci[]);
+void HighScore(string ime, int novci, int chipovi);
 int chip = 5;
 vector<string>imena;
 int korisnici = 0;
@@ -53,7 +54,11 @@ void Menu(int &chipovi, int &novci) {
 		cout << "2. Isplata novca" << endl;
 		cout << "3. Odabit igre" << endl;
 		cout << "4. Logout" << endl;
-		cout << "5. Izlaz" << endl;
+		cout << "5. High Score" << endl;
+		cout << "6. Izlaz" << endl;
+		cout << "----------------------------" << endl;
+		cout << "***NEZABORAVITE ISPLATIT***" << endl;
+		cout << "----------------------------" << endl;
 
 		cin >> menuIzbor;
 		switch (menuIzbor) {
@@ -69,6 +74,14 @@ void Menu(int &chipovi, int &novci) {
 		case 4:
 			LogOut(ime,chipovi,novci);
 			break;
+		case 5:
+			HighScore(ime, novci, chipovi);
+			break;
+		
+			
+			
+
+
 
 		}
 
@@ -602,6 +615,19 @@ void Provjera(int ulog ,int &chipovi,bool dobitak1red, bool dobitak2red, bool do
 	}
 }
 void HighScore(string ime,int novci, int chipovi) {
-
+	ifstream ispis;
+	vector<string>zaIspis;
+	string proba;
+	int num = 0;
+	ispis.open("Text.txt", ios::out);
+	while (ispis) {
+		ispis >> proba;
+		zaIspis.push_back(proba);
+		num++;
+	}
+	for (int i = 0; i < num-1; i++) {
+		
+		cout << zaIspis[i] << endl;
+	}
 	
 }
